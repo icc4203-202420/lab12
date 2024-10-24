@@ -31,17 +31,6 @@ active_games = {}
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = "¡Hola! Soy un chatbot. Usa /juegos para ver los juegos disponibles."
     await update.message.reply_text(message)
-    
-    # Guardar en el historial
-    chat_id = update.effective_chat.id
-    user_id = update.effective_user.id
-    memory_key = get_memory_key(update)
-    
-    if memory_key not in chat_histories:
-        chat_histories[memory_key] = ChatMessageHistory()
-    
-    chat_histories[memory_key].add_user_message(update.message.text)
-    chat_histories[memory_key].add_ai_message(message)
 
 def get_memory_key(update: Update) -> str:
     chat_id = update.effective_chat.id
