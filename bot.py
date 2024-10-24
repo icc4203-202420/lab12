@@ -40,7 +40,7 @@ def get_memory_key(update: Update) -> str:
         return f"group_{chat_id}"
     return f"private_{chat_id}_{user_id}"
 
-async def rendirse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def surrender(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.effective_chat.id
     memory_key = get_memory_key(update)
     
@@ -62,7 +62,7 @@ async def rendirse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # Eliminar el juego activo
     del active_games[chat_id]
 
-async def juegos(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def list_games(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     keyboard = [
         [InlineKeyboardButton("Ahorcado", callback_data='juego_1')],
         [InlineKeyboardButton("Juego 2", callback_data='juego_2')]
@@ -193,8 +193,8 @@ def main() -> None:
     application = Application.builder().token(TELEGRAM_TOKEN).build()
 
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(CommandHandler("juegos", juegos))
-    application.add_handler(CommandHandler("rendirse", rendirse)) 
+    application.add_handler(CommandHandler("juegos", list_games))
+    application.add_handler(CommandHandler("rendirse", surrender)) 
     application.add_handler(CallbackQueryHandler(button_handler))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
