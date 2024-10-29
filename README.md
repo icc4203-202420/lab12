@@ -42,6 +42,38 @@ La interacción entre los componentes es de acuerdo al diagrama en la figura:
 6. La API de Bot de Telegram reenvía la respuesta a la Aplicación de Telegram.
 7. La Aplicación de Telegram muestra la respuesta al Usuario.
 
+## Crear un Bot de Telegram
+
+Los pasos básicos para crear un bot de Telegram usando _BotFather_ (herramienta de creación de bots) y configurar su entorno inicial:
+
+1. Abre Telegram y busca el usuario BotFather (oficial de Telegram) en la barra de búsqueda.
+2. Entra al chat con BotFather y usa el comando `/newbot`.
+3. BotFather te pedirá que elijas un nombre para tu bot (este puede tener espacios y caracteres especiales).
+4. Luego, elige un nombre de usuario único que termine en "bot" (por ejemplo, `MiBotDeEjemplo_bot`).
+5. BotFather te generará un Token de API. Guárdalo bien, ya que lo necesitarás para comunicarte con Telegram a través de su API.
+
+Ahora, puedes configurar el bot en tu ambiente de desarrollo:
+
+Debes instalar las dependencias necesarias en tu entorno de programación. Si usas Python, por ejemplo, puedes instalar python-telegram-bot:
+
+```bash
+pip install python-telegram-bot
+```
+
+Guarda el token de API en una variable de entorno para mantener la seguridad. Puedes usar un archivo `.env` con bibliotecas como `dotenv` en Python o configurar el token directamente en las variables de entorno de tu sistema.
+
+Ahora, puedes importar las bibliotecas necesarias (como `Application`, `CommandHandler`, y `MessageHandler` de `python-telegram-bot` si usas Python).
+
+Configura el token del bot en la inicialización de la aplicación usando el token que obtuviste de BotFather.
+
+Puedes agregar algunos comandos básicos al bot:
+
+* Define funciones para los comandos comunes (`/start`, `/help`, etc.), que servirán como puntos de entrada para interactuar con el bot.
+* Usa los `CommandHandler` para definir qué función ejecutará cada comando en el bot.
+* Configura el método de polling para que el bot escuche y responda continuamente. Por ejemplo, en Python puedes ejecutar `application.run_polling()` en el archivo principal.
+
+Para probar el bot, vuelve a la aplicación de Telegram, busca tu bot por su nombre de usuario y envíale un mensaje o un comando para asegurarte de que responde. Con estos pasos tendrás un bot funcional de Telegram que responde a comandos básicos.
+
 ## Uso de LLMs con LangChain
 
 LangChain es una biblioteca diseñada para facilitar el desarrollo de aplicaciones que utilizan modelos de lenguaje grandes, tales como GPT, de manera modular y flexible. Esta herramienta permite crear flujos de interacción complejos y escalables, con funciones avanzadas que facilitan la integración de modelos de lenguaje en aplicaciones, especialmente chatbots y agentes conversacionales. LangChain ofrece una infraestructura que permite organizar la interacción con modelos de lenguaje en "cadenas" o secuencias de acciones. Estas cadenas pueden incluir llamadas a modelos de lenguaje, consulta a bases de datos, acceso a APIs externas, y manejo de la lógica de negocio o el flujo conversacional. LangChain cuenta con varios módulos clave:
